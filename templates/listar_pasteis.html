@@ -1,0 +1,24 @@
+<h1>Pasteis</h1>
+
+<table border="1">
+<thead>
+    <tr>
+    <th>Farinha</th>
+    <th>Recheio</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for pastel in object_list %}
+    <tr>
+    <td>{{ pastel.farinha }}</td>
+    <td>{{ pastel.recheio }}</td>
+    <td><a href="{% url "editar_pastel" pastel.id %}">edit</a></td>
+    <td><a href="{% url "deletar_pastel" pastel.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<a href="{% url "criar_pastel" %}">New</a>
