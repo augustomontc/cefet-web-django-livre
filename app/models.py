@@ -4,11 +4,13 @@ from django.forms import ModelForm
 
 # Create your models here.
 class Pastel(models.Model):
+	nome = models.CharField(max_length=45, default='Pastelao')
 	farinha = models.CharField(max_length=45)
-	recheio = models.ManyToManyField('Recheio')
+	recheio = models.CharField(max_length=45, default='Carne')
+	#recheio = models.ManyToManyField('Recheio')
 
 	def __str__(self):
-		return u'{0} com {1}'.format(self.farinha,self.recheio)
+		return u'{0} de {1} com {2}'.format(self.nome,self.farinha,self.recheio)
 
 class Recheio(models.Model):
 	nome = models.CharField(max_length=45)

@@ -22,7 +22,7 @@ from django.conf.urls import url
 from app import views
 
 urlpatterns = [
-    path('pastel', views.ListarPasteis.as_view(), name='listar_pasteis'),
+    path('', views.ListarPasteis.as_view(), name='listar_pasteis'),
     path('pastel/novo', views.InserirPastel.as_view(), name='criar_pastel'),
     path('pastel/editar/<int:pk>', views.AtualizarPastel.as_view(), name='editar_pastel'),
     path('pastel/deletar/<int:pk>', views.RemoverPastel.as_view(), name='deletar_pastel'),

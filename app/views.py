@@ -44,16 +44,16 @@ class ListarRecheios(ListView):
     model = Recheio
     template_name = 'listar_recheios.html'
 
-    def get_queryset(self):
-        return Recheio.objects.annotate(valor_total=ExpressionWrapper(F('quantidade')*F('preco'),\
-                            output_field=DecimalField(max_digits=10,\
-                                                    decimal_places=2,\
-                                                     blank=True)\
-                                                    )\
-                            )
+    # def get_queryset(self):
+    #     return Recheio.objects.annotate(valor_total=ExpressionWrapper(F('quantidade')*F('preco'),\
+    #                         output_field=DecimalField(max_digits=10,\
+    #                                                 decimal_places=2,\
+    #                                                  blank=True)\
+    #                                                 )\
+    #                         )
 
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     return super().get_context_data(**kwargs)
 
 class RemoverRecheio(DeleteView):
     model = Recheio
@@ -62,7 +62,7 @@ class RemoverRecheio(DeleteView):
 
 class SalvarRecheio():
     model = Recheio
-    fields = ['nome','quantidade','preco','img_recheio']
+    fields = ['nome','preco','img_recheio']
     template_name = 'salvar_recheio.html'
     success_url = reverse_lazy('listar_recheios')
 
