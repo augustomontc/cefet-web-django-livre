@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django import forms
 from django.db.models import F,ExpressionWrapper,DecimalField
 from django.http import HttpResponseRedirect
 from django.views import View
@@ -8,6 +9,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Pastel, Recheio
+from app.forms import PastelForm
+from django.views.generic.edit import FormView
 
 # Create your views here.LoginRequiredMixin
 class ListarPasteis(ListView):
@@ -20,10 +23,13 @@ class RemoverPastel(DeleteView):
     success_url = reverse_lazy('listar_pasteis')
 
 class SalvarPastel():
-    model = Pastel
-    fields = ['farinha','recheio']
+    form_class = PastelForm
     template_name = 'salvar_pastel.html'
     success_url = reverse_lazy('listar_pasteis')
+
+    def form_invalid(self, form):
+        return http.HttpResponse("form is invalid..")
+
 
 class InserirPastel(SalvarPastel,CreateView):
     pass
