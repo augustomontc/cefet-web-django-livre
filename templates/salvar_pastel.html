@@ -1,0 +1,12 @@
+{% load static %}
+
+{% block content %}
+
+  <h1>Salvar Pastel<h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button>Enviar</button>
+  </form>
+
+{% endblock %}

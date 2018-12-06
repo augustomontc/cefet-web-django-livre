@@ -1,0 +1,30 @@
+<h1>Recheios</h1>
+
+<table border="1">
+<thead>
+    <tr>
+    <th>Imagem</th>
+    <th>Nome</th>
+    <th>Quantidade</th>
+    <th>Preço</th>
+    <th>Preço Final</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for recheio in object_list %}
+    <tr>
+    <td><img src="{{ recheio.img_recheio.url }}"></td>
+    <td>{{ recheio.nome }}</td>
+    <td>{{ recheio.quantidade }}</td>
+    <td>{{ recheio.preco }}</td>
+    <td>{{ tesouro.valor_total|floatformat:2 }}</td>
+    <td><a href="{% url "editar_recheio" recheio.id %}">edit</a></td>
+    <td><a href="{% url "deletar_recheio" recheio.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<a href="{% url "criar_recheio" %}">New</a>
