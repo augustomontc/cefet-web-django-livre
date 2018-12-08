@@ -22,6 +22,7 @@ from django.conf.urls import url
 from app import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.ListarPasteis.as_view(), name='listar_pasteis'),
     path('pastel/novo', views.InserirPastel.as_view(), name='criar_pastel'),
     path('pastel/editar/<int:pk>', views.AtualizarPastel.as_view(), name='editar_pastel'),
@@ -30,6 +31,6 @@ urlpatterns = [
     path('recheio/novo', views.InserirRecheio.as_view(), name='criar_recheio'),
     path('recheio/editar/<int:pk>', views.AtualizarRecheio.as_view(), name='editar_recheio'),
     path('recheio/deletar/<int:pk>', views.RemoverRecheio.as_view(), name='deletar_recheio'),
-    #path('login',LoginView.as_view(template_name="login.html"),name="login"),
-    #path('logout',LogoutView.as_view(next_page="/login"),name="logout"),
-]
+    path('login',LoginView.as_view(template_name="login.html"),name="login"),
+    path('logout',LogoutView.as_view(next_page="/login"),name="logout"),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

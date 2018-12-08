@@ -12,17 +12,20 @@ from .models import Pastel, Recheio
 from app.forms import PastelForm
 from django.views.generic.edit import FormView
 
-# Create your views here.LoginRequiredMixin
-class ListarPasteis(ListView):
+'''
+    Pasteis
+'''
+class ListarPasteis(LoginRequiredMixin,ListView):
     model = Pastel
     template_name = 'listar_pasteis.html'
 
-class RemoverPastel(DeleteView):
+class RemoverPastel(LoginRequiredMixin,DeleteView):
     model = Pastel
     template_name = 'deletar_pastel.html'
     success_url = reverse_lazy('listar_pasteis')
 
-class SalvarPastel():
+class SalvarPastel(LoginRequiredMixin):
+    model = Pastel
     form_class = PastelForm
     template_name = 'salvar_pastel.html'
     success_url = reverse_lazy('listar_pasteis')
@@ -40,27 +43,16 @@ class AtualizarPastel(SalvarPastel,UpdateView):
 '''
     Recheios
 '''
-class ListarRecheios(ListView):
+class ListarRecheios(LoginRequiredMixin, ListView):
     model = Recheio
     template_name = 'listar_recheios.html'
 
-    # def get_queryset(self):
-    #     return Recheio.objects.annotate(valor_total=ExpressionWrapper(F('quantidade')*F('preco'),\
-    #                         output_field=DecimalField(max_digits=10,\
-    #                                                 decimal_places=2,\
-    #                                                  blank=True)\
-    #                                                 )\
-    #                         )
-
-    # def get_context_data(self, **kwargs):
-    #     return super().get_context_data(**kwargs)
-
-class RemoverRecheio(DeleteView):
+class RemoverRecheio(LoginRequiredMixin,DeleteView):
     model = Recheio
     template_name = 'deletar_recheio.html'
     success_url = reverse_lazy('listar_recheios')
 
-class SalvarRecheio():
+class SalvarRecheio(LoginRequiredMixin):
     model = Recheio
     fields = ['nome','preco','img_recheio']
     template_name = 'salvar_recheio.html'

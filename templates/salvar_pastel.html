@@ -1,12 +1,11 @@
-{% load static %}
-
+{% extends "base.html" %}
 {% block content %}
-
-  <h1>Salvar Pastel<h1>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button>Enviar</button>
-  </form>
-
+	<div class="jumbotron">
+		<h3>Salvar Pastel</h3>
+		<form method="post">{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn btn-primary">Salvar</button>
+			<p><a href="{% url 'listar_pasteis' %}">Cancelar</a></p>
+		</form>
+	</div>
 {% endblock %}
